@@ -1,4 +1,4 @@
-import { 
+import type { 
     PipelineRequest, 
     PipelineResponse, 
     SendRequest,
@@ -20,7 +20,7 @@ export interface HttpClient {
 }
 
 // Re-export the types from Azure
-export { 
+export type { 
     PipelineRequest,
     PipelineResponse, 
     SendRequest,

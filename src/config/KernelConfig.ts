@@ -1,4 +1,4 @@
-import { HttpClient } from '../interfaces/HttpClient';
+import type { HttpClient } from '../interfaces/HttpClient.ts';
 
 /**
  * Configuration for a Kernel instance.
@@ -17,4 +17,5 @@ export interface KernelConfig {
     /**
      * The memory store for persisting data.
      */
-    }
+    readonly memoryStore?: unknown; // Placeholder for memory store type
+}

@@ -1,5 +1,5 @@
-import { KernelConfig } from '../config/KernelConfig';
-import { KernelBuilder } from '../builders/KernelBuilder';
+import type { KernelConfig } from '../config/KernelConfig.ts';
+import { KernelBuilder } from '../builders/KernelBuilder.ts';
 
 /**
  * Represents the main entry point for the Semantic Kernel functionality.

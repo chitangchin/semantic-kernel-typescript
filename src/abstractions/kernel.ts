@@ -1,6 +1,6 @@
-import { SemanticKernelBuilder } from './SemanticKernelBuilder';
-import { HttpClient } from '../interfaces/HttpClient';
-import { KernelConfig } from '../config/KernelConfig';
+import type { SemanticKernelBuilder } from '../interfaces/SemanticKernelBuilder.ts';
+import type { HttpClient } from '../interfaces/HttpClient.ts';
+import type { KernelConfig } from '../config/KernelConfig.ts';
 
 /**
  * Represents the main entry point for the Semantic Kernel functionality.

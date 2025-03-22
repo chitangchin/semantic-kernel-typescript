@@ -1,7 +1,7 @@
-import { SemanticKernelBuilder } from '../interfaces/SemanticKernelBuilder';
-import { Kernel } from '../core/kernel';
-import { KernelConfig } from '../config/KernelConfig';
-import { HttpClient } from '../interfaces/HttpClient';
+import type { SemanticKernelBuilder } from '../interfaces/SemanticKernelBuilder.ts';
+import { Kernel } from '../core/kernel.ts';
+import type { KernelConfig } from '../config/KernelConfig.ts';
+import type { HttpClient } from '../interfaces/HttpClient.ts';
 
 /**
  * Builder for creating configured Kernel instances.
