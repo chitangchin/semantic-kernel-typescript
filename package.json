@@ -1,10 +1,13 @@
 {
   "name": "semantic-kernel-typescript",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "description": "TypeScript Support for semantic kernel",
   "keywords": [
     "semantic-kernel",
     "ai",
+    "llm",
+    "openai",
+    "azure-openai",
     "ai-agent"
   ],
   "homepage": "https://github.com/chitangchin/semantic-kernel-typescript#readme",
@@ -17,10 +20,12 @@
   },
   "license": "MIT",
   "author": "chitangchin",
-  "type": "commonjs",
+  "type": "module",
   "main": "index.js",
   "scripts": {
-    "test": "test"
+    "build": "tsc",
+    "test": "jest",
+    "lint": "eslint src/**/*.ts",
   },
   "devDependencies": {
     "@eslint/js": "^9.23.0",
