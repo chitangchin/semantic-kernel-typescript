@@ -1,0 +1,21 @@
+name: TypeScript Unit Tests
+
+on :
+ pull_request:
+  branches: ["main", "stage", "dev", "feature*"]
+
+jobs:
+  typescript-unit-tests:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        node-version: [ 22.x, 23.x, 24.x ]
+    name: Node ${{ matrix.node-version }} on ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Node.js Setup
+        uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+      - run: npm run test
