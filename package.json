@@ -34,5 +34,8 @@
     "typescript": "^5.8.2",
     "typescript-eslint": "^8.27.0",
     "vitest": "^3.0.9"
+  },
+  "dependencies": {
+    "@azure/core-rest-pipeline": "^1.19.1"
   }
 }
