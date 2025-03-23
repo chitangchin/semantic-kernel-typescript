@@ -17,6 +17,6 @@
     "outDir": "./dist",
     "rootDir": "./src",
   },
-  "include": ["src/**/*"],
+  "include": ["src/**/*", "tests/core/KernelBuilder.test.ts", "tests/interfaces/IServiceCollection.test.ts", "tests/interfaces/IKernelBuilder.test.ts", "tests/services/ServiceCollection.test.ts"],
   "exclude": ["node_modules", "dist", "**/*.test.ts"]
 }
