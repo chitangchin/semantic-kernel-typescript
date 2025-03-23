@@ -27,15 +27,15 @@ export class KernelBuilder implements IKernelBuilder, IKernelBuilderPlugins {
     }
     
 
-    build(): Kernel {
-        if (!this.allowBuild) {
-          throw new Error("This builder instance does not allow building");
-        }
+    // build(): Kernel {
+    //     if (!this.allowBuild) {
+    //       throw new Error("This builder instance does not allow building");
+    //     }
         
-        // Create service provider from the services
-        const serviceProvider = this.services.buildServiceProvider();
+    //     // Create service provider from the services
+    //     const serviceProvider = this.services.buildServiceProvider();
         
-        // Return new kernel with the service provider
-        return new Kernel(serviceProvider);
-      }
+    //     // Return new kernel with the service provider
+    //     return new Kernel(serviceProvider);
+    //   }
 }
