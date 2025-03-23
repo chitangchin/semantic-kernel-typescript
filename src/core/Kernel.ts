@@ -1,27 +1,37 @@
-import type { KernelConfig } from '../config/KernelConfig.ts';
-import { KernelBuilder } from '../builders/KernelBuilder.ts';
+/*
+First Phase
 
-/**
- * Represents the main entry point for the Semantic Kernel functionality.
- */
-export class Kernel {
-    /**
-     * Creates a new Kernel with the specified configuration.
-     * 
-     * @param config The kernel configuration.
-     */
-    constructor(
-        private readonly config: KernelConfig
-    ) {}
+Completed:
+- Microsoft.SemanticKernel.IKernelBuilder
 
-    /**
-     * Creates a new builder for configuring and creating a Kernel instance.
-     * 
-     * @returns A new KernelBuilder instance.
-     */
-    public static builder(): KernelBuilder {
-        return new KernelBuilder();
-    }
+- System.Globalization.CultureInfo
 
-    // Additional kernel methods would go here
-}
+REGION Semantic kernel:
+- Microsoft.SemanticKernel.KernelPluginCollection
+- Microsoft.SemanticKernel.NonNullCollection<T>
+- Microsoft.SemanticKernel.EmptyServiceProvider
+- Microsoft.SemanticKernel.IAIServiceSelector
+- Microsoft.SemanticKernel.Services.OrderedAIServiceSelector
+- Microsoft.SemanticKernel.IFunctionInvocationFilter
+- Microsoft.SemanticKernel.IPromptRenderFilter
+- Microsoft.SemanticKernel.IAutoFunctionInvocationFilter
+
+MS extenstions:
+- Microsoft.Extensions.Logging.ILoggerFactory
+- Microsoft.Extensions.Logging.Abstractions.NullLoggerFactory
+
+
+
+- System.Threading.Interlocked
+- System.IServiceProvider
+
+REGION Get Services:
+
+REGION Filters:
+
+REGION Invoke Async:
+
+REGION InvokeStreamingAsync:
+
+REGION Private
+*/
