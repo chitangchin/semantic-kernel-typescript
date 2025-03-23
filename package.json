@@ -38,6 +38,7 @@
     "vitest": "^3.0.9"
   },
   "dependencies": {
-    "@azure/core-rest-pipeline": "^1.19.1"
+    "@azure/core-rest-pipeline": "^1.19.1",
+    "tsyringe": "^4.8.0"
   }
 }
