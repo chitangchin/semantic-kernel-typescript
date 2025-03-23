@@ -1,30 +1,44 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import type { InjectionToken } from "tsyringe";
 
 export interface IServiceCollection {
-    // Register a singleton service
-    addSingleton<T>(serviceType: any, implementation: new (...args: any[]) => T): void;
-    addSingletonInstance<T>(serviceType: any, instance: T): void;
+    /**
+     * Registers a singleton service.
+     */
+    addSingleton<T>(serviceType: InjectionToken<T>, implementation: new (...args: any[]) => T): IServiceCollection;
     
-    // Register a scoped service
-    addScoped<T>(serviceType: any, implementation: new (...args: any[]) => T): void;
+    /**
+     * Registers a singleton instance.
+     */
+    addSingletonInstance<T>(serviceType: InjectionToken<T>, instance: T): IServiceCollection;
     
-    // Register a transient service
-    addTransient<T>(serviceType: any, implementation: new (...args: any[]) => T): void;
+    /**
+     * Registers a scoped service.
+     */
+    addScoped<T>(serviceType: InjectionToken<T>, implementation: new (...args: any[]) => T): IServiceCollection;
     
-    // Get a service
-    getService<T>(serviceType: any): T;
+    /**
+     * Registers a transient service.
+     */
+    addTransient<T>(serviceType: InjectionToken<T>, implementation: new (...args: any[]) => T): IServiceCollection;
     
-    // Create a scope
-    createScope(): IServiceScope;
+    /**
+     * Builds a service provider from this collection.
+     */
+    buildServiceProvider(): IServiceProvider;
+    
+    /**
+     * Creates a scope.
+     */
+    createScope(): { serviceProvider: IServiceProvider; dispose: () => void };
 }
 
-// Interface for defining a service scope
-export interface IServiceScope {
-    serviceProvider: IServiceProvider;
-    dispose(): void;
-}
-
-// Interface for the service provider
+/**
+ * Interface for the service provider.
+ */
 export interface IServiceProvider {
-    getService<T>(serviceType: any): T;
+    /**
+     * Gets a service of the specified type.
+     */
+    getService<T>(serviceType: InjectionToken<T>): T;
 }

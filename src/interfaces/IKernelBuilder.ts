@@ -5,15 +5,15 @@ import type { IServiceCollection } from "./IServiceCollection.ts";
 export interface IKernelBuilder
 {
     /// <summary>Gets the collection of services to be built into the <see cref="Kernel"/>.</summary>
-    readonly Services: IServiceCollection;
+    readonly services: IServiceCollection;
 
     /// <summary>Gets a builder for adding collections as singletons to <see cref="Services"/>.</summary>
-    readonly Plugins: IKernelBuilderPlugins;
+    readonly plugins: IKernelBuilderPlugins;
 }
 
 /// <summary>Provides a builder for adding plugins as singletons to a service collection.</summary>
-interface IKernelBuilderPlugins
+export interface IKernelBuilderPlugins
 {
     /// <summary>Gets the collection of services to which plugins should be added.</summary>
-    readonly Services: IServiceCollection;
+    readonly services: IServiceCollection;
 }
