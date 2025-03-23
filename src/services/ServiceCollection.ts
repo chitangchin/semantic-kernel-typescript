@@ -1,58 +1,80 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
+import { container, Lifecycle, InjectionToken } from "tsyringe";
+import type { IServiceCollection, IServiceProvider } from "../interfaces/IServiceCollection.js";
 
-import { container, Lifecycle } from "tsyringe";
-import type { IServiceCollection, IServiceProvider, IServiceScope } from "../interfaces/IKernelBuilder.js";
-
-// Implement the service collection using tsyringe
-export class ServiceCollection implements IServiceCollection {
+/**
+ * Implements a service collection using tsyringe for dependency injection.
+ */
+export class ServiceCollection implements IServiceCollection, IServiceProvider {
     private container = container.createChildContainer();
 
-    addSingleton<T>(serviceType: any, implementation: new (...args: any[]) => T): void {
-        // Fix the registration to use the correct format expected by tsyringe
+    /**
+     * Registers a singleton service.
+     */
+    addSingleton<T>(serviceType: InjectionToken<T>, implementation: new (...args: any[]) => T): IServiceCollection {
         this.container.register(serviceType, implementation, { lifecycle: Lifecycle.Singleton });
+        return this;
     }
 
-    addSingletonInstance<T>(serviceType: any, instance: T): void {
+    /**
+     * Registers a singleton instance.
+     */
+    addSingletonInstance<T>(serviceType: InjectionToken<T>, instance: T): IServiceCollection {
         this.container.registerInstance(serviceType, instance);
+        return this;
     }
 
-    addScoped<T>(serviceType: any, implementation: new (...args: any[]) => T): void {
-        // For scoped, we register with the container
+    /**
+     * Registers a scoped service.
+     */
+    addScoped<T>(serviceType: InjectionToken<T>, implementation: new (...args: any[]) => T): IServiceCollection {
         this.container.register(serviceType, implementation, { lifecycle: Lifecycle.ContainerScoped });
+        return this;
     }
 
-    addTransient<T>(serviceType: any, implementation: new (...args: any[]) => T): void {
+    /**
+     * Registers a transient service.
+     */
+    addTransient<T>(serviceType: InjectionToken<T>, implementation: new (...args: any[]) => T): IServiceCollection {
         this.container.register(serviceType, implementation, { lifecycle: Lifecycle.Transient });
+        return this;
     }
 
-    getService<T>(serviceType: any): T {
+    /**
+     * Gets a service of the specified type.
+     */
+    getService<T>(serviceType: InjectionToken<T>): T {
         return this.container.resolve(serviceType);
     }
 
-    createScope(): IServiceScope {
+    /**
+     * Builds a service provider from this collection.
+     */
+    buildServiceProvider(): IServiceProvider {
+        return this;
+    }
+
+    /**
+     * Creates a new scope with its own service provider.
+     */
+    createScope(): { serviceProvider: IServiceProvider; dispose: () => void } {
         const childContainer = this.container.createChildContainer();
-        return new ServiceScope(childContainer);
+        const provider = new ScopedServiceProvider(childContainer);
+        
+        return {
+            serviceProvider: provider,
+            dispose: () => { /* Release any resources */ }
+        };
     }
 }
 
-// Implement service scope
-class ServiceScope implements IServiceScope {
-    constructor(private childContainer: any) {}
-
-    get serviceProvider(): IServiceProvider {
-        return new ServiceProvider(this.childContainer);
-    }
-
-    dispose(): void {
-        // Release any resources if needed
-    }
-}
-
-// Implement service provider
-class ServiceProvider implements IServiceProvider {
+/**
+ * Provides scoped service resolution.
+ */
+class ScopedServiceProvider implements IServiceProvider {
     constructor(private container: any) {}
 
-    getService<T>(serviceType: any): T {
+    getService<T>(serviceType: InjectionToken<T>): T {
         return this.container.resolve(serviceType);
     }
 }

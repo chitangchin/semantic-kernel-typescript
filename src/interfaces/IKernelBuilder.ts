@@ -12,7 +12,7 @@ export interface IKernelBuilder
 }
 
 /// <summary>Provides a builder for adding plugins as singletons to a service collection.</summary>
-interface IKernelBuilderPlugins
+export interface IKernelBuilderPlugins
 {
     /// <summary>Gets the collection of services to which plugins should be added.</summary>
     readonly Services: IServiceCollection;
